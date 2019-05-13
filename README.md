@@ -8,4 +8,7 @@
 ## Install dependencies
 
 - Open terminal and run: pip3 install -r requirements.txt
-- From project run: python3 src/
+
+## Execute scraper
+
+- From project folder run: python3 src/scraper.py
