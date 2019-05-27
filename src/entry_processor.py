@@ -1,9 +1,14 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from extractors import extract_products_information
-from utils import should_continue
 
 pagination_increment = 10
+
+def should_continue(soup):
+  result = soup.findAll('div', {"style" : "width: 100%;height: 200px;float: left;"})
+  if len(result) == 0:
+    return True
+  return False
 
 def process_entry(entry):
   index = 0
@@ -17,7 +22,7 @@ def process_entry(entry):
       html = bs(response, 'html.parser')
       if not should_continue(html):
         break
-      products_information = extract_products_information(html)
+      products_information = extract_products_information(html) # VER extract_products_information(html)
       result.extend(products_information)
     except:
       print('Failure calling: {}'.format(url))
