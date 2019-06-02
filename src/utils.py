@@ -17,13 +17,6 @@ def should_continue(soup):
     return True
   return False
 
-def process_entries(entries):
-  result = list()
-  for entry in entries:
-    information = process_entry(entry)
-    result.extend(information)
-  return result
-
 def save_into_csv(information):
   project_folder_path = Path().absolute()
   file_location = '{}/output/result_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))

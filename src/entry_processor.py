@@ -10,6 +10,13 @@ def should_continue(soup):
     return True
   return False
 
+def process_entries(entries):
+  result = list()
+  for entry in entries:
+    information = process_entry(entry)
+    result.extend(information)
+  return result
+
 def process_entry(entry):
   index = 0
   result = list()
