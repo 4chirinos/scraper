@@ -1,10 +1,3 @@
 {
-  "entries": [
-    "https://www.tottus.cl/tottus/productListFragment/Bebidas-y-Licores/cat1350041?No={}&Nrpp=&currentCatId=cat1350041",
-    "https://www.tottus.cl/tottus/productListFragment/Accesorios-de-Limpieza/cat230047?No={}&Nrpp=&currentCatId=cat230047",
-    "https://www.tottus.cl/tottus/productListFragment/Aseo-y-Limpieza/cat1350040?No={}&Nrpp=&currentCatId=cat1350040",
-    "https://www.tottus.cl/tottus/productListFragment/Beb%C3%A9s-y-Ni%C3%B1os/cat1350042?No={}&Nrpp=&currentCatId=cat1350042",
-    "https://www.tottus.cl/tottus/productListFragment/L%C3%A1cteos-y-Huevos/cat1350045?No={}&Nrpp=&currentCatId=cat1350045",
-    "https://www.tottus.cl/tottus/productListFragment/Electro-y-Tecnolog%C3%ADa/cat1350044?No={}&Nrpp=&currentCatId=cat1350044"
-  ]
+  "entries": []
 }
