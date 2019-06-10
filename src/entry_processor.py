@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 from extractors import extract_products_information
 
 pagination_increment = 10
+max_tries = 10
 
 def should_continue(soup):
   result = soup.findAll('div', {"style" : "width: 100%;height: 200px;float: left;"})
@@ -19,6 +20,7 @@ def process_entries(entries):
 
 def process_entry(entry):
   index = 0
+  tries = 0
   result = list()
   while True:
     url = str(entry).format(index)
@@ -31,7 +33,12 @@ def process_entry(entry):
         break
       products_information = extract_products_information(html) # VER extract_products_information(html)
       result.extend(products_information)
+      tries = 0
     except:
+      tries += 1
       print('Failure calling: {}'.format(url))
+      if tries == max_tries:
+        print('Skipping rest of calls: {}'.format(url))
+        return result
     index += pagination_increment
   return result
