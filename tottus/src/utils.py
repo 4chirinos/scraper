@@ -5,11 +5,11 @@ import csv
 from pathlib import Path
 from entry_processor import process_entry
 
-def load_urls():
+def load_entries():
   project_folder_path = Path().absolute()
-  with open('{}/urls.json'.format(project_folder_path), 'r') as file:
-    urls = json.load(file)
-  return urls['entries']
+  with open('{}/tottus/entries.json'.format(project_folder_path), 'r') as file:
+    entries = json.load(file)
+  return entries['entries']
 
 def should_continue(soup):
   result = soup.findAll('div', {"style" : "width: 100%;height: 200px;float: left;"})
@@ -19,7 +19,7 @@ def should_continue(soup):
 
 def save_into_csv(information):
   project_folder_path = Path().absolute()
-  file_location = '{}/output/result_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))
+  file_location = '{}/tottus/output/result_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))
   os.makedirs(os.path.dirname(file_location), exist_ok=True)
   csv_file = open(file_location, 'w')
   with csv_file:

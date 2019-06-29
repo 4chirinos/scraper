@@ -31,7 +31,7 @@ def process_entry(entry):
       html = bs(response, 'html.parser')
       if not should_continue(html):
         break
-      products_information = extract_products_information(html) # VER extract_products_information(html)
+      products_information = extract_products_information(html)
       result.extend(products_information)
       tries = 0
     except:

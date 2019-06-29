@@ -1,0 +1,5 @@
+{
+  "entries": [
+    {"requests":[{"indexName":"campaigns_production","params":"query=&hitsPerPage={}&maxValuesPerFacet=20&page=0&highlightPreTag=%3Cais-highlight-0000000000%3E&highlightPostTag=%3C%2Fais-highlight-0000000000%3E&facets=%5B%22categorias%22%2C%22filters.Marca%22%2C%22filters.Producto%22%2C%22filters.Compa%C3%B1%C3%ADa%22%2C%22filters.Memoria%20Interna%22%2C%22filters.C%C3%A1mara%20Trasera%22%2C%22filters.Tama%C3%B1o%20Pantalla%22%2C%22filters.Sistema%20Operativo%22%5D&tagFilters=&facetFilters=%5B%22categorias%3ACopa%20Am%C3%A9rica%22%2C%22categorias%3ACopa%20Am%C3%A9rica%20Telefon%C3%ADa%22%5D"}]}
+  ]
+}
