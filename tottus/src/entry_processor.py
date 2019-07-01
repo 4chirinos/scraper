@@ -23,7 +23,7 @@ def process_entry(entry):
   tries = 0
   result = list()
   while True:
-    url = str(entry).format(index)
+    url = entry.format(index)
     print('Calling: {}'.format(url))
     request = Request(url, headers = {'User-Agent': 'Mozilla/5.0'})
     try:

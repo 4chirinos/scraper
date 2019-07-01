@@ -29,8 +29,8 @@ def process_entries(entries):
 
 def process_entry(entry):
   result = list()
+  print('Processing entry: {}'.format(entry))
   try:
-    print('Processing entry: {}'.format(entry))
     total_products = extract_total_products(get_data(entry, 1))
     products = extract_products(get_data(entry, total_products))
     for product in products:
