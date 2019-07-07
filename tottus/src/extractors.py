@@ -11,8 +11,7 @@ def get_regular_price(price):
 def get_current_price(price):
   return price.span.text.strip()
 
-def get_product_name(product):
-  title = product.find('div', class_ = 'title')
+def get_product_name(title):
   return title.a.h5.div.text.strip()
 
 def get_measure(statement):
@@ -32,7 +31,7 @@ def get_promotions_period(offer_details):
   return period.strip()
 
 def extract_product_information(product):
-  name = get_product_name(product)
+  name = get_product_name(product.find('div', class_ = 'title'))
   regular_price = get_regular_price(product.find('span', class_ = 'nule-price'))
   current_price = get_current_price(product.find('span', class_ = 'active-price'))
   measure = get_measure(product.find('div', class_ = 'statement'))

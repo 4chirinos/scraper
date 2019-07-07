@@ -3,7 +3,6 @@ import json
 import datetime
 import csv
 from pathlib import Path
-from entry_processor import process_entry
 
 def load_entries():
   project_folder_path = Path().absolute()
