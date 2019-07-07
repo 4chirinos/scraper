@@ -1,4 +1,4 @@
-from models import ProductInformation
+from .models import ProductInformation
 
 def get_products(html):
   return html.find_all('div', class_ = 'product-item-box')

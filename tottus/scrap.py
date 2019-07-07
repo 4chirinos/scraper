@@ -1,12 +1,18 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
-from extractors import extract_products_information
+from .utils import save_into_csv
+from .extractors import extract_products_information
 
 pagination_increment = 10
 max_tries = 10
 
+def scrap(entries):
+  information = process_entries(entries)
+  save_into_csv(information)
+  print('Tottus done...')
+
 def should_continue(soup):
-  result = soup.findAll('div', {"style" : "width: 100%;height: 200px;float: left;"})
+  result = soup.findAll('div', {'style' : 'width: 100%;height: 200px;float: left;'})
   if len(result) == 0:
     return True
   return False

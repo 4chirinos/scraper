@@ -1,8 +1,14 @@
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
-from extractors import extract_products_information
+from .extractors import extract_products_information
+from .utils import save_into_csv
 
 MAX_PRODUCTS = 5000
+
+def scrap(entries):
+  information = process_entries(entries)
+  save_into_csv(information)
+  print('Líder supermarket done...')
 
 def process_entries(entries):
   result = list()

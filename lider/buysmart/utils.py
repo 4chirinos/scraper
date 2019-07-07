@@ -4,15 +4,9 @@ import datetime
 import csv
 from pathlib import Path
 
-def load_entries():
-  project_folder_path = Path().absolute()
-  with open('{}/lider/buysmart/entries.json'.format(project_folder_path), 'r') as file:
-    entries = json.load(file)
-  return entries['entries']
-
 def save_into_csv(information):
   project_folder_path = Path().absolute()
-  file_location = '{}/lider/buysmart/output/result_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))
+  file_location = '{}/output/lider/buysmart/result_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))
   os.makedirs(os.path.dirname(file_location), exist_ok = True)
   csv_file = open(file_location, 'w')
   with csv_file:
