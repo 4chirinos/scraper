@@ -1,3 +1,4 @@
+import logging
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from .extractors import extract_products_information
@@ -28,5 +29,5 @@ def process_entry(entry):
     products_information = extract_products_information(html)
     result.extend(products_information)
   except:
-    print('Failure calling: {}'.format(url))
+    logging.error('Failure calling: {}'.format(url))
   return result

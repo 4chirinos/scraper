@@ -1,3 +1,4 @@
+import logging
 import json, copy
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
@@ -43,5 +44,5 @@ def process_entry(entry):
       product_information = extract_product_information(product)
       result.append(product_information)
   except:
-    print('Failure processing entry: {}'.format(entry))
+    logging.error('Failure calling: {}'.format(entry))
   return result

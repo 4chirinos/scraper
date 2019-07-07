@@ -1,3 +1,4 @@
+import logging
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from .utils import save_into_csv
@@ -11,8 +12,8 @@ def scrap(entries):
   save_into_csv(information)
   print('Tottus done...')
 
-def should_continue(soup):
-  result = soup.findAll('div', {'style' : 'width: 100%;height: 200px;float: left;'})
+def should_continue(html):
+  result = html.findAll('div', {'style' : 'width: 100%;height: 200px;float: left;'})
   if len(result) == 0:
     return True
   return False
@@ -42,9 +43,9 @@ def process_entry(entry):
       tries = 0
     except:
       tries += 1
-      print('Failure calling: {}'.format(url))
+      logging.error('Failure calling: {}'.format(url))
       if tries == max_tries:
-        print('Skipping rest of calls: {}'.format(url))
+        logging.error('Skipping rest of calls: {}'.format(url))
         return result
     index += pagination_increment
   return result
