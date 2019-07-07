@@ -11,4 +11,4 @@
 
 ## Execute scraper
 
-- From project folder run: python3 src/scraper.py
+- From project folder run: python3 main.py
