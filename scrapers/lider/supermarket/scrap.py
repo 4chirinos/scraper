@@ -7,9 +7,11 @@ from .utils import save_into_csv
 MAX_PRODUCTS = 5000
 
 def scrap(entries):
+  logging.info('Processing Líder supermarket')
   information = process_entries(entries)
   save_into_csv(information)
   print('Líder supermarket done...')
+  logging.info('Ending Líder supermarket')
 
 def process_entries(entries):
   result = list()
@@ -21,7 +23,7 @@ def process_entries(entries):
 def process_entry(entry):
   result = list()
   url = entry.format(MAX_PRODUCTS)
-  print('Calling: {}'.format(url))
+  print('Processing: {}'.format(url))
   request = Request(url, headers = {'User-Agent': 'Mozilla/5.0'})
   try:
     response = urlopen(request).read()
@@ -29,5 +31,5 @@ def process_entry(entry):
     products_information = extract_products_information(html)
     result.extend(products_information)
   except:
-    logging.error('Failure calling: {}'.format(url))
+    logging.error('Failure processing: {}'.format(url))
   return result

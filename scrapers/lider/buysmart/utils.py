@@ -1,7 +1,4 @@
-import os
-import json
-import datetime
-import csv
+import os, copy, json, csv, datetime
 from pathlib import Path
 
 def save_into_csv(information):
@@ -19,3 +16,11 @@ def save_into_csv(information):
         'Precio Regular': i.regular_price,
         'Precio Actual': i.current_price
       })
+
+def prepare_payload(entry, n_products_to_retrieve):
+  entry_copy = copy.deepcopy(entry)
+  payload = entry_copy['requests'][0]
+  params = payload['params']
+  payload['params'] = params.format(n_products_to_retrieve)
+  entry_copy['requests'][0] = payload
+  return entry_copy

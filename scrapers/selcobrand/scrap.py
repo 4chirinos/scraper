@@ -4,16 +4,18 @@ from bs4 import BeautifulSoup as bs
 from .utils import save_into_csv
 from .extractors import extract_products_information
 
-pagination_increment = 10
+page_increment = 1
 max_tries = 10
 
 def scrap(entries):
+  logging.info('Processing Selcobrand')
   information = process_entries(entries)
   save_into_csv(information)
-  print('Tottus done...')
+  print('Selcobrand done...')
+  logging.info('Ending Selcobrand')
 
 def should_continue(html):
-  result = html.findAll('div', {'style' : 'width: 100%;height: 200px;float: left;'})
+  result = html.findAll('div', {'data-hook' : 'products_search_results_heading_no_results_found'})
   if len(result) == 0:
     return True
   return False
@@ -26,12 +28,12 @@ def process_entries(entries):
   return result
 
 def process_entry(entry):
-  index = 0
+  page = 1
   tries = 0
   result = list()
   while True:
-    url = entry.format(index)
-    print('Calling: {}'.format(url))
+    url = '{}?current_store_id=1&page={}'.format(entry, page)
+    print('Processing: {}'.format(url))
     request = Request(url, headers = {'User-Agent': 'Mozilla/5.0'})
     try:
       response = urlopen(request).read()
@@ -43,9 +45,9 @@ def process_entry(entry):
       tries = 0
     except:
       tries += 1
-      logging.error('Failure calling: {}'.format(url))
+      logging.error('Failure processing: {}'.format(url))
       if tries == max_tries:
         logging.error('Skipping rest of calls: {}'.format(url))
         return result
-    index += pagination_increment
+    page += page_increment
   return result
