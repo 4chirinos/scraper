@@ -107,4 +107,4 @@ venv.bak/
 output/
 
 # vs workspace
-.code-workspace
+*.code-workspace
