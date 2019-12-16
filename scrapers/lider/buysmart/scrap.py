@@ -16,6 +16,7 @@ def scrap(entries):
 def get_data(entry, n_products_to_retrieve):
   payload = prepare_payload(entry, n_products_to_retrieve)
   data = json.dumps(payload).encode('utf8')
+  print(data)
   request = Request(URL, data = data, headers = {'User-Agent': 'Mozilla/5.0'})
   data = json.loads(urlopen(request).read().decode('utf8'))
   return data
@@ -29,7 +30,7 @@ def process_entries(entries):
 
 def process_entry(entry):
   result = list()
-  print('Processing entry: {}'.format(entry))
+  #print('Processing entry: {}'.format(entry))
   try:
     total_products = extract_total_products(get_data(entry, 1))
     products = extract_products(get_data(entry, total_products))

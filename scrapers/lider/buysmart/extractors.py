@@ -10,5 +10,7 @@ def extract_product_information(product):
   name = product['displayName']
   regular_price = product['price']['BasePriceReference']
   current_price = product['price']['BasePriceSales']
-  product_information = ProductInformation(name, regular_price, current_price)
+  sku = product['sku']
+  id = product['id']
+  product_information = ProductInformation(name, regular_price, current_price, sku, id)
   return product_information

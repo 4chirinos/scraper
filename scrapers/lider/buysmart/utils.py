@@ -7,14 +7,16 @@ def save_into_csv(information):
   os.makedirs(os.path.dirname(file_location), exist_ok = True)
   csv_file = open(file_location, 'w')
   with csv_file:
-    columns = ['Producto', 'Precio Regular', 'Precio Actual']
+    columns = ['Producto', 'Precio Regular', 'Precio Actual', 'Sku', 'Product Id']
     writer = csv.DictWriter(csv_file, fieldnames = columns)    
     writer.writeheader()
     for i in information:
       writer.writerow({
         'Producto': i.name,
         'Precio Regular': i.regular_price,
-        'Precio Actual': i.current_price
+        'Precio Actual': i.current_price,
+        'Sku': i.sku,
+        'Product Id': i.id
       })
 
 def prepare_payload(entry, n_products_to_retrieve):
