@@ -16,7 +16,7 @@ def save_into_csv(information):
   os.makedirs(os.path.dirname(file_location), exist_ok = True)
   csv_file = open(file_location, 'w')
   with csv_file:
-    columns = ['Producto', 'Unidad/Medida', 'Precio Regular', 'Precio Actual', 'Precio por Unidad/Medida']
+    columns = ['Producto', 'Unidad/Medida', 'Precio Regular', 'Precio Actual', 'Precio por Unidad/Medida', 'Sku', 'Product Id']
     writer = csv.DictWriter(csv_file, fieldnames = columns)    
     writer.writeheader()
     for i in information:
@@ -25,5 +25,7 @@ def save_into_csv(information):
         'Unidad/Medida': i.measure,
         'Precio Regular': i.regular_price,
         'Precio Actual': i.current_price,
-        'Precio por Unidad/Medida': i.price_measure_relation
+        'Precio por Unidad/Medida': i.price_measure_relation,
+        'Sku': i.sku,
+        'Product Id': i.id
       })
