@@ -6,7 +6,7 @@ from pathlib import Path
 
 def save_into_csv(information):
   project_folder_path = Path().absolute()
-  file_location = '{}/output/tottus/result_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))
+  file_location = '{}/output/tottus/tottus_{}.csv'.format(project_folder_path, str(datetime.datetime.now()))
   os.makedirs(os.path.dirname(file_location), exist_ok = True)
   csv_file = open(file_location, 'w')
   with csv_file:

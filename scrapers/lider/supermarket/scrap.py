@@ -1,10 +1,16 @@
 import logging
+import configparser
+from pathlib import Path
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from .extractors import extract_products_information
 from .utils import save_into_csv
 
-MAX_PRODUCTS = 5000
+config = configparser.RawConfigParser()
+config.read('{}/scraper.properties'.format(Path().absolute()))
+LIDER_SUPERMARKET = dict(config.items('LIDER_SUPERMARKET'))
+
+MAX_PRODUCTS = int(LIDER_SUPERMARKET['max_products'])
 
 def scrap(entries):
   logging.info('Processing Líder supermarket')
@@ -30,6 +36,7 @@ def process_entry(entry):
     html = bs(response, 'html.parser')
     products_information = extract_products_information(html)
     result.extend(products_information)
-  except:
+  except Exception as e:
     logging.error('Failure processing: {}'.format(url))
+    logging.error(e)
   return result

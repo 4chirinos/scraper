@@ -1,11 +1,17 @@
 import logging
+import configparser
+from pathlib import Path
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from .utils import save_into_csv
 from .extractors import extract_products_information
 
-pagination_increment = 10
-max_tries = 10
+config = configparser.RawConfigParser()
+config.read('{}/scraper.properties'.format(Path().absolute()))
+TOTTUS = dict(config.items('TOTTUS'))
+
+PAGINATION_INCREMENT = int(TOTTUS['pagination_increment'])
+MAX_TRIES = int(TOTTUS['max_tries'])
 
 def scrap(entries):
   logging.info('Processing Tottus')
@@ -43,11 +49,12 @@ def process_entry(entry):
       products_information = extract_products_information(html)
       result.extend(products_information)
       tries = 0
-    except:
+    except Exception as e:
       tries += 1
       logging.error('Failure processing: {}'.format(url))
-      if tries == max_tries:
+      logging.error(e)
+      if tries == MAX_TRIES:
         logging.error('Skipping rest of calls: {}'.format(url))
         return result
-    index += pagination_increment
+    index += PAGINATION_INCREMENT
   return result

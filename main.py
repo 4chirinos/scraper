@@ -11,12 +11,14 @@ def main():
 
 def start():
   path = Path().absolute()
-  #tottus_entries = load_entries('{}/entries/tottus_entries.json'.format(path))
+  tottus_entries = load_entries('{}/entries/tottus_entries.json'.format(path))
   lider_buysmart_entries = load_entries('{}/entries/lider_smartbuy_entries.json'.format(path))
+  lider_simple_entries = load_entries('{}/entries/lider_simple_entries.json'.format(path))
   lider_supermarket_entries = load_entries('{}/entries/lider_supermarket_entries.json'.format(path))
   selcobrand_entries = load_entries('{}/entries/selcobrand_entries.json'.format(path))
-  #scrapers.tottus.scrap(tottus_entries)
+  scrapers.tottus.scrap(tottus_entries)
   scrapers.lider.buysmart.scrap(lider_buysmart_entries)
+  scrapers.lider.simple.scrap(lider_simple_entries)
   scrapers.lider.supermarket.scrap(lider_supermarket_entries)
   scrapers.selcobrand.scrap(selcobrand_entries)
 
