@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs
 from .utils import save_into_csv
 from .extractors import extract_products_information
 
+
 config = configparser.RawConfigParser()
 config.read('{}/scraper.properties'.format(Path().absolute()))
 SELCOBRAND = dict(config.items('SELCOBRAND'))

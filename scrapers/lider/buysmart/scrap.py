@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from .utils import save_into_csv
+from ...utils import set_query_string_parameter_from_qs
 from .extractors import extract_total_products, extract_products, extract_product_information
 
 config = configparser.RawConfigParser()
@@ -23,7 +24,7 @@ def prepare_payload(entry, n_products_to_retrieve):
   entry_copy = copy.deepcopy(entry)
   payload = entry_copy['requests'][0]
   params = payload['params']
-  payload['params'] = params.format(n_products_to_retrieve)
+  payload['params'] = set_query_string_parameter_from_qs(params, 'hitsPerPage', n_products_to_retrieve)
   entry_copy['requests'][0] = payload
   return entry_copy
 
@@ -43,7 +44,7 @@ def process_entries(entries):
 
 def process_entry(entry):
   result = list()
-  print('Processing entry: {}'.format(entry))
+  #print('Processing entry: {}'.format(entry))
   try:
     total_products = extract_total_products(get_data(entry, 1))
     products = extract_products(get_data(entry, total_products))

@@ -5,6 +5,7 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as bs
 from .extractors import extract_products_information
 from .utils import save_into_csv
+from ...utils import set_query_string_parameter_from_url
 
 config = configparser.RawConfigParser()
 config.read('{}/scraper.properties'.format(Path().absolute()))
@@ -28,7 +29,7 @@ def process_entries(entries):
 
 def process_entry(entry):
   result = list()
-  url = entry.format(MAX_PRODUCTS)
+  url = set_query_string_parameter_from_url(entry, 'Nrpp', MAX_PRODUCTS)
   print('Processing: {}'.format(url))
   request = Request(url, headers = {'User-Agent': 'Mozilla/5.0'})
   try:
