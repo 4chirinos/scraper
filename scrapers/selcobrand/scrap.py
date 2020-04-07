@@ -15,6 +15,7 @@ PAGE_INCREMENT = int(SELCOBRAND['page_increment'])
 MAX_TRIES = int(SELCOBRAND['max_tries'])
 
 def scrap(entries):
+  print('Starting Selcobrand')
   logging.info('Processing Selcobrand')
   information = process_entries(entries)
   save_into_csv(information)

@@ -14,6 +14,7 @@ URL = LIDER_SIMPLE['url']
 MAX_PRODUCTS = int(LIDER_SIMPLE['max_products'])
 
 def scrap(entries):
+  print('Starting Líder simple')
   logging.info('Processing Líder simple')
   information = process_entries(entries)
   save_into_csv(information)

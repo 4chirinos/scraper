@@ -15,6 +15,7 @@ PAGINATION_INCREMENT = int(TOTTUS['pagination_increment'])
 MAX_TRIES = int(TOTTUS['max_tries'])
 
 def scrap(entries):
+  print('Starting Tottus')
   logging.info('Processing Tottus')
   information = process_entries(entries)
   save_into_csv(information)

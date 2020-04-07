@@ -14,6 +14,7 @@ LIDER_SUPERMARKET = dict(config.items('LIDER_SUPERMARKET'))
 MAX_PRODUCTS = int(LIDER_SUPERMARKET['max_products'])
 
 def scrap(entries):
+  print('Starting Líder supermarket')
   logging.info('Processing Líder supermarket')
   information = process_entries(entries)
   save_into_csv(information)

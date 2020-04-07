@@ -14,6 +14,7 @@ LIDER_BUYSMART = dict(config.items('LIDER_BUYSMART'))
 URL = LIDER_BUYSMART['url']
 
 def scrap(entries):
+  print('Starting Líder buysmart')
   logging.info('Processing Líder buysmart')
   information = process_entries(entries)
   save_into_csv(information)
@@ -44,7 +45,7 @@ def process_entries(entries):
 
 def process_entry(entry):
   result = list()
-  #print('Processing entry: {}'.format(entry))
+  print('Processing entry: {}'.format(entry))
   try:
     total_products = extract_total_products(get_data(entry, 1))
     products = extract_products(get_data(entry, total_products))
